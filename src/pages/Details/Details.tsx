@@ -16,19 +16,13 @@ const Details = () => {
   const { cityURL } = useParams<{ cityURL: string }>();
   const history = useHistory();
 
-  const inputHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const inputHandle = (e: React.ChangeEvent<HTMLInputElement>) =>
     setInputValue(e.target.value);
-  };
 
-  const searchHandle = () => {
-    history.push(inputValue);
-  };
+  const searchHandle = () => history.push(inputValue);
 
-  const handleSearchOnEnter = (
-    event: React.KeyboardEvent<HTMLInputElement>
-  ) => {
-    if (event.key === 'Enter') searchHandle();
-  };
+  const handleSearchOnEnter = (event: React.KeyboardEvent<HTMLInputElement>) =>
+    event.key === 'Enter' && searchHandle();
 
   useEffect(() => {
     setLoader(true);

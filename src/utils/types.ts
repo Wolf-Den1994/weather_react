@@ -11,3 +11,10 @@ export interface IDataApi {
 export interface IDataApiWithList {
   list: IDataApi[];
 }
+
+export enum Cities {
+  City = 'city',
+  Minsk = 'Minsk',
+  Moscow = 'Moscow',
+  Bratislava = 'Bratislava',
+}

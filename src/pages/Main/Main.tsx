@@ -1,25 +1,28 @@
 import { useEffect, useState } from 'react';
 import { currentWeather, weatherByTime } from '../../services/weatherAPI';
 import { getHour } from '../../utils/time';
-import { IDataApi } from '../../utils/types';
+import { IDataApi, Cities } from '../../utils/types';
 import loadGif from '../../assets/images/load.gif';
 import WeatherData from '../../components/WeatherData/WeatherData';
 import WeatherWithDate from '../../components/WeatherWithDate/WeatherWithDate';
 import style from './Main.module.scss';
 
+const NOON = 12;
+const COUNT_DAYS = 2;
+
 const Main = () => {
-  const localCity = window.localStorage.getItem('city');
+  const localCity = window.localStorage.getItem(Cities.City);
 
   const [currentData, setCurrentData] = useState<IDataApi | null>(null);
   const [threeDaysData, setThreeDaysData] = useState<IDataApi[] | null>(null);
-  const [city, setCity] = useState(localCity || 'Minsk');
+  const [city, setCity] = useState(localCity || Cities.Minsk);
   const [fault, setFault] = useState(false);
   const [loaderCurrentData, setLoaderCurrentData] = useState(true);
   const [loaderThreeDaysData, setLoaderThreeDaysData] = useState(true);
 
   const changeCityHandle = (nameCity: string) => {
     setCity(nameCity);
-    window.localStorage.setItem('city', nameCity);
+    window.localStorage.setItem(Cities.City, nameCity);
   };
 
   useEffect(() => {
@@ -44,7 +47,7 @@ const Main = () => {
         data.list.forEach((item: IDataApi) => {
           const time = item.dt_txt;
           const hour = getHour(time);
-          if (+hour === 12 && counterDays <= 2) {
+          if (+hour === NOON && counterDays <= COUNT_DAYS) {
             dataThreeDays.push(item);
             counterDays++;
           }
@@ -63,7 +66,7 @@ const Main = () => {
   return (
     <div className={style.main}>
       <div className={style.buttons}>
-        {['Minsk', 'Moscow', 'Bratislava'].map((nameCity) => (
+        {[Cities.Minsk, Cities.Moscow, Cities.Bratislava].map((nameCity) => (
           <button
             className={`${style.button} ${style.cityButton} ${
               localCity === nameCity ? style.active : ''

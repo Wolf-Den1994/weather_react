@@ -1,7 +1,7 @@
-import style from './WeatherWithDate.module.scss';
 import { getDate, getFullTime } from '../../utils/time';
-import WeatherData from '../WeatherData/WeatherData';
 import { IDataApi } from '../../utils/types';
+import WeatherData from '../WeatherData/WeatherData';
+import style from './WeatherWithDate.module.scss';
 
 interface IWeatherWithDateProps {
   data: IDataApi;
