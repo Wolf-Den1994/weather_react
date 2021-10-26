@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
-import style from '../Details/Details.module.scss';
 import { weatherByTime } from '../../services/weatherAPI';
+import { IDataApi } from '../../utils/types';
 import WeatherWithDate from '../../components/WeatherWithDate/WeatherWithDate';
+import style from '../Details/Details.module.scss';
 
 const Details = () => {
   const [inputValue, setInputValue] = useState('');
-  const [data, setData] = useState<any>(null);
+  const [list, setList] = useState<null | IDataApi[]>(null);
 
   const { cityURL } = useParams<{ cityURL: string }>();
   const history = useHistory();
@@ -22,7 +23,7 @@ const Details = () => {
 
   useEffect(() => {
     weatherByTime(cityURL).then(({ data }) => {
-      setData(data.list);
+      setList(data.list);
     });
   }, [cityURL]);
 
@@ -41,8 +42,8 @@ const Details = () => {
         </button>
       </div>
       <div className={style.fiveDays}>
-        {data &&
-          data.map((item: any) => (
+        {list &&
+          list.map((item: IDataApi) => (
             <WeatherWithDate data={item} isTimeNeed key={item.dt} />
           ))}
       </div>

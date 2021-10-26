@@ -33,7 +33,13 @@
     transition: 0.3s;
 
     &:hover {
-      background-color: #44aabb;
+      background-color: #287988;
+      color: #ef2;
+    }
+
+    &.active {
+      background-color: #287988;
+      color: #ef2;
     }
   }
 
