@@ -21,6 +21,12 @@ const Details = () => {
     history.push(inputValue);
   };
 
+  const handleSearchOnEnter = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (event.key === 'Enter') searchHandle();
+  };
+
   useEffect(() => {
     weatherByTime(cityURL).then(({ data }) => {
       setList(data.list);
@@ -36,6 +42,7 @@ const Details = () => {
           className={style.input}
           onChange={inputHandle}
           value={inputValue}
+          onKeyPress={handleSearchOnEnter}
         />
         <button className={style.button} onClick={searchHandle}>
           Search
