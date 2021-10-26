@@ -1,9 +1,15 @@
-const App = () => {
-    return (
-        <div>
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
+import AppRouter from '../AppRouter/AppRouter';
 
-        </div>
-    );
+const App = () => {
+  return (
+    <Router>
+      <Route exact path="/">
+        <Redirect to="/main" />
+      </Route>
+      <AppRouter />
+    </Router>
+  );
 };
 
 export default App;
