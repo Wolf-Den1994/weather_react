@@ -32,7 +32,7 @@ const Details = () => {
       <div className={style.forUser}>
         <input
           type="text"
-          placeholder="example: Minsk"
+          placeholder={`example: ${cityURL}`}
           className={style.input}
           onChange={inputHandle}
           value={inputValue}

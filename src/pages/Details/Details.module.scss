@@ -21,6 +21,13 @@
     }
   }
 
+  .fiveDays {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-evenly;
+  }
+
   .button {
     border: 1px solid #44bbaa;
     background-color: #44bbaa;
