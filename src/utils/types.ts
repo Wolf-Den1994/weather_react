@@ -5,6 +5,7 @@ export interface IDataApi {
   clouds: { all: number };
   dt_txt: string;
   dt: number;
+  message: string;
 }
 
 export interface IDataApiWithList {
